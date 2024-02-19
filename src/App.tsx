@@ -30,24 +30,11 @@ const initialItems: PackingListItem[] = [
   { id: 15, description: "Laptop", quantity: 1, packed: false },
 ];
 
-// Workaround to keep this functionality simple, but not recommended. It took me a while to figure out how to do this 😜.
-type callBackFunction = undefined | ((id: number) => void);
-let callback: callBackFunction | undefined = undefined;
-export function updatePackingListItem(
-  callbackfn: callBackFunction
-): callBackFunction | undefined {
-  if (callbackfn) {
-    callback = callbackfn;
-  }
-  return callback;
-}
-
 function App() {
   const [packingListItems, setPackingListItems] =
     React.useState<PackingListItem[]>(initialItems);
 
   const addNewItem = (description: string, quantity: number) => {
-    packingListItems.forEach((i) => console.log(i));
     const maxId: number = packingListItems
       .map((i) => i.id)
       .reduce((a, b) => Math.max(a, b), 0);
@@ -58,7 +45,6 @@ function App() {
       packed: false,
     };
     packingListItems.push(newItem);
-    console.log(packingListItems);
     setPackingListItems([...packingListItems]);
   };
 
@@ -70,13 +56,11 @@ function App() {
     }
   };
 
-  updatePackingListItem(togglePacked);
-
   return (
     <div className="app">
       <Logo />
       <Form addNewItem={addNewItem} />
-      <PackingList items={packingListItems} />
+      <PackingList items={packingListItems} togglePacked={togglePacked} />
       <Stats />
     </div>
   );

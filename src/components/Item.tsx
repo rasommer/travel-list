@@ -1,14 +1,16 @@
 import React from "react";
-import { PackingListItem, updatePackingListItem } from "../App";
+import { PackingListItem } from "../App";
 
-function Item(props: PackingListItem) {
-  const item: PackingListItem = props;
+interface ItemProps {
+  item: PackingListItem;
+  togglePacked: (id: number) => void;
+}
+
+function Item(props: ItemProps) {
+  const { item, togglePacked } = props;
 
   const handleTogglePacked = () => {
-    const togglePacked = updatePackingListItem(undefined);
-    if (togglePacked) {
-      togglePacked(item.id);
-    }
+    togglePacked(item.id);
   };
 
   return (

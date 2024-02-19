@@ -3,15 +3,16 @@ import Item from "./Item";
 
 interface PackingListProps {
   items: PackingListItem[];
+  togglePacked: (id: number) => void;
 }
 
 function PackingList(props: PackingListProps) {
-  const { items } = props;
+  const { items, togglePacked } = props;
 
   return (
     <ul className="list">
       {items.map((i) => (
-        <Item {...i} key={i.id} />
+        <Item item={i} togglePacked={togglePacked} key={i.id} />
       ))}
     </ul>
   );
