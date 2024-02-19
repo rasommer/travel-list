@@ -84,8 +84,8 @@ input {
 
   display: flex;
   justify-content: space-between;
-  flex-direction: column;
-  gap: 3.2rem;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
 }
 
@@ -114,12 +114,17 @@ input {
   display: flex;
   align-items: center;
   gap: 1.2rem;
+  width: 50%;
 }
 
 input[type="checkbox"] {
   height: 2rem;
   width: 2rem;
   accent-color: #e5771f;
+}
+
+.list li span {
+  margin-left: 15px;
 }
 
 .list li button {
